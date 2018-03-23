@@ -6,6 +6,7 @@ services:
     image: "pocin/kbc-processor-html2csv:dev"
     volumes:
         - ./:/code
-        - ./data:/data
+        - ./tests/data/in/files/Transaction_Report.2018-03-06.xls:/data/in/files/report_test.xls
+        - ./data/:/data/out/files/
     command:
       - /bin/sh
