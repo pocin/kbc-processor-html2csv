@@ -1,6 +1,6 @@
 # Html table to csv converter
 
-Read all files in `/data/in/files/**/*` (regarldess of extensions and how deeply they are nested), parse with `pd.read_html` and write to corresponding locations in `/data/out/files`
+Read all files (valid html pages containing a table) in `/data/in/files/**/*` (regarldess of extensions and how deeply they are nested), parse with [pd.read_html](https://pandas.pydata.org/pandas-docs/stable/generated/pandas.read_html.html) and write to corresponding locations in `/data/out/files`
 
 I dont actually think anyone else will reuse this, but here's our usecase
 
