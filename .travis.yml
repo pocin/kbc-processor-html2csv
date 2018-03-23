@@ -7,7 +7,7 @@ before_script:
   - 
   - docker build . --tag=$APP_IMAGE
 script:
-  - docker run --rm --entrypoint '/bin/sh' $APP_IMAGE python3 -m pytest
+  - docker run --rm --entrypoint 'python3' $APP_IMAGE -m pytest
 after_success:
   - docker images
 
