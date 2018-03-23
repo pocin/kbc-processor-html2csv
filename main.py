@@ -14,7 +14,7 @@ def find_all_files(datadir):
 
 def _build_outpath_from_inpath(inpath):
     infolder, name = os.path.split(inpath)
-    outfolder = infolder.replace('/data/in/files/', '/data/out/files/')
+    outfolder = infolder.replace('/data/in/files', '/data/out/files')
     if not os.path.isdir(outfolder):
         os.makedirs(outfolder)
     basename, suffix = os.path.splitext(name)
