@@ -13,9 +13,12 @@ def find_all_files(datadir):
 
 
 def _build_outpath_from_inpath(inpath):
-    outfolder, name = os.path.split(inpath)
+    infolder, name = os.path.split(inpath)
+    outfolder = infolder.replace('/data/in/files/', '/data/out/files/')
+    if not os.path.isdir(outfolder):
+        os.makedirs(outfolder)
     basename, suffix = os.path.splitext(name)
-    outpath = os.path.join(outfolder, basename + '.csv').replace('/data/in/files/', '/data/out/files/')
+    outpath = os.path.join(outfolder, basename + '.csv')
     return outpath
 
 def _parse_table(inpath):
@@ -24,8 +27,9 @@ def _parse_table(inpath):
 
 def process_table(inpath):
     logging.info("processing '%s'", inpath)
-    outpath = _build_outpath_from_inpath(inpath)
     df = _parse_table(inpath)
+    outpath = _build_outpath_from_inpath(inpath)
+    logging.info("saving into '%s'", outpath)
     df.to_csv(outpath, index=False)
     return outpath
 

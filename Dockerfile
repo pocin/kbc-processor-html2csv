@@ -11,6 +11,7 @@ RUN pip install --no-cache-dir --ignore-installed \
     lxml \
     git+git://github.com/keboola/python-docker-application.git@2.0.0
 
+RUN mkdir -p /data/out/files /data/in/files
 WORKDIR /code
 
 COPY . /code/
