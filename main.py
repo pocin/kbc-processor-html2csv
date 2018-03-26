@@ -41,9 +41,11 @@ def main(datadir):
 if __name__ == "__main__":
     try:
         logging.basicConfig(level=logging.INFO)
+        logging.basicConfig(stream=sys.stdout, level=logging.DEBUG)
+        logging.basicConfig(stream=sys.stdout, level=logging.INFO)
         main('/data/in/files/')
     except (ValueError, KeyError) as err:
-        logging.error(err)
+        logging.exception(err)
         sys.exit(1)
     except:
         logging.exception("Internal error")
