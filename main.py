@@ -40,9 +40,8 @@ def main(datadir):
 
 if __name__ == "__main__":
     try:
-        logging.basicConfig(level=logging.INFO)
         logging.basicConfig(stream=sys.stdout, level=logging.DEBUG)
-        logging.basicConfig(stream=sys.stdout, level=logging.INFO)
+        logging.critical("Starting processor")
         main('/data/in/files/')
     except (ValueError, KeyError) as err:
         logging.exception(err)
