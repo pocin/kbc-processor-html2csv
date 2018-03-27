@@ -13,16 +13,20 @@ def find_all_files(datadir):
 
 
 def _build_outpath_from_inpath(inpath):
+    logging.debug("Buliding outpath from %s", inpath)
     infolder, name = os.path.split(inpath)
     outfolder = infolder.replace('/data/in/files', '/data/out/files')
     if not os.path.isdir(outfolder):
         os.makedirs(outfolder)
     basename, suffix = os.path.splitext(name)
     outpath = os.path.join(outfolder, basename + '.csv')
+    logging.debug("destination is %s", outpath)
     return outpath
 
 def _parse_table(inpath):
-    df = pd.read_html(inpath)[0]
+    logging.debug("Opening with pandas")
+    df = pd.read_html(inpath, attrs={'class':'report'}, flavor='html5lib')[0]
+    logging.debug("Opened ")
     return df
 
 def process_table(inpath):
