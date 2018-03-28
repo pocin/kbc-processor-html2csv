@@ -30,10 +30,10 @@ def _parse_table(inpath):
     return df
 
 def process_table(inpath):
-    logging.info("processing '%s'", inpath)
+    logging.debug("processing '%s'", inpath)
     df = _parse_table(inpath)
     outpath = _build_outpath_from_inpath(inpath)
-    logging.info("saving into '%s'", outpath)
+    logging.debug("saving into '%s'", outpath)
     df.to_csv(outpath, index=False)
     return outpath
 
@@ -44,8 +44,11 @@ def main(datadir):
 
 if __name__ == "__main__":
     try:
-        logging.basicConfig(stream=sys.stdout, level=logging.DEBUG)
-        logging.critical("Starting processor")
+        if os.getenv("KBC_PARAMETER_DEBUG"):
+            logging.basicConfig(stream=sys.stdout, level=logging.DEBUG)
+        else:
+            logging.basicConfig(stream=sys.stdout, level=logging.INFO)
+        logging.debug("Starting processor")
         main('/data/in/files/')
     except (ValueError, KeyError) as err:
         logging.exception(err)
